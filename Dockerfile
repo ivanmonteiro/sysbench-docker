@@ -5,5 +5,5 @@ RUN DEBIAN_FRONTEND="noninteractive" apt-get -y install tzdata
 RUN apt-get install -y sysbench mc mysql-client
 
 WORKDIR /
-RUN mkdir -p /home/ubuntu/stresstest
+RUN mkdir -p /home/ubuntu/stresstest && chmod 777 /home/ubuntu/stresstest
 WORKDIR /home/ubuntu/stresstest
