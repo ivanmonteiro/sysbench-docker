@@ -2,7 +2,7 @@
 
 This project is a stress test for the database. It creates a sysbench container connected to a mysql Mariadb database.
 
-# Pre-requisites
+## Pre-requisites
 
 Docker is required to run this project.
 Docker-compose is also required to run this project.
@@ -18,7 +18,9 @@ docker-compose up --abort-on-container-exit --exit-code-from stresstest
 
 ## List of sysbench tests:
 
-Here is a list of the available sysbench tests. Change the docker-compose.yml file to run a different test.
+Here is a list of the available sysbench tests. 
+
+Change docker-compose.yml file to run a different test.
 
 ```
 bulk_insert.lua  
