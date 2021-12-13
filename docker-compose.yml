@@ -1,0 +1,36 @@
+version: '2.1'
+services:
+  # db:
+  #   image: mysql:5.7
+  #   restart: always
+  #   command: mysqld --sql_mode=""
+  #   environment:
+  #       - MYSQL_DATABASE=stresstest
+  #       - MYSQL_ROOT_PASSWORD=root
+  #       - MYSQL_USER=testuser
+  #       - MYSQL_PASSWORD=testuser
+  #   ports:
+  #       - "8989:3306"   
+
+  mariadb:
+    image: mariadb:10.6
+    environment:
+      MYSQL_DATABASE: stresstest
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: testuser
+      MYSQL_PASSWORD: testuser
+    healthcheck:
+      test: mysqladmin ping -h 127.0.0.1 -u $$MYSQL_USER --password=$$MYSQL_PASSWORD
+      timeout: 5s
+      retries: 20
+    ports:
+      - 3309:3306
+
+  stresstest:
+    build:
+        context: .
+        dockerfile: Dockerfile
+    command: /bin/bash -c "./test.sh oltp_read_write.lua"
+    depends_on:
+      mariadb:
+        condition: service_healthy
