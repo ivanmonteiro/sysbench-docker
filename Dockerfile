@@ -4,6 +4,11 @@ RUN apt-get update -y
 RUN DEBIAN_FRONTEND="noninteractive" apt-get -y install tzdata
 RUN apt-get install -y sysbench mc mysql-client
 
-WORKDIR /
-RUN mkdir -p /home/ubuntu/stresstest && chmod 777 /home/ubuntu/stresstest
-WORKDIR /home/ubuntu/stresstest
+RUN mkdir -p /home/ubuntu/ && chmod 777 /home/ubuntu/
+WORKDIR /home/ubuntu/
+
+COPY test.sh .
+RUN ["chmod", "+x", "/home/ubuntu/test.sh"]
+
+ENTRYPOINT ["./test.sh"]
+CMD ["oltp_read_write.lua"]
