@@ -7,5 +7,3 @@ RUN apt-get install -y sysbench mc mysql-client
 WORKDIR /
 RUN mkdir -p /home/ubuntu/stresstest
 WORKDIR /home/ubuntu/stresstest
-
-COPY test.sh .
