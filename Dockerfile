@@ -8,7 +8,7 @@ RUN mkdir -p /home/ubuntu/ && chmod 777 /home/ubuntu/
 WORKDIR /home/ubuntu/
 
 COPY test.sh .
-RUN ["chmod", "+x", "/home/ubuntu/test.sh"]
+RUN ["chmod", "+x", "test.sh"]
 
 ENTRYPOINT ["./test.sh"]
 CMD ["oltp_read_write.lua"]
