@@ -3,7 +3,7 @@
 #prepare
 sysbench --mysql-host=mariadb  --mysql-db=stresstest --mysql-user=testuser  \
          --db-driver=mysql --mysql-password=testuser \
-         --mysql-port=3306 /usr/share/sysbench/$1  prepare
+         --mysql-port=3306 --table-size=100000 /usr/share/sysbench/$1  prepare
 
 # run tests
 sysbench --mysql-host=mariadb  --mysql-db=stresstest --mysql-user=testuser \
